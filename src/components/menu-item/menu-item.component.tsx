@@ -2,7 +2,6 @@ import React from "react"
 import "./menu-item.styles.scss"
 import { withRouter } from "react-router-dom"
 import { RouteComponentProps } from "react-router"
-import { link } from "fs"
 
 export interface IMenuItem {
   id: number
