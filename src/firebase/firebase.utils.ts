@@ -12,7 +12,7 @@ const config = {
   appId: "1:950091501457:web:8097c85f9adc21110bd430",
 }
 
-export const createUserProfileDocument = async (userAuth: firebase.User, additionaData?: {}) => {
+export const createUserProfileDocument = async (userAuth: firebase.User | null, additionaData?: {}) => {
   if (!userAuth) return
   const userRef = firestore.doc(`users/${userAuth.uid}}`)
   const snapShot = await userRef.get()

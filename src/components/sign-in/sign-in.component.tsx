@@ -42,7 +42,7 @@ export class SignIn extends React.Component<{}, IState> {
             label="Password"
             required
             handleChange={this.handleChange}
-            autoComplete="off"
+            autoComplete="on"
           />
           <div className="buttons">
             <CustomButton type="submit">Sign In</CustomButton>
