@@ -10,7 +10,6 @@ export const CustomButton = ({
   isGoogleSignIn,
   ...otherProps
 }: React.ButtonHTMLAttributes<HTMLButtonElement> & IButton) => {
-  console.log(isGoogleSignIn)
   return (
     <button className={`${isGoogleSignIn ? "google-sign-in" : ""} custom-button`} {...otherProps}>
       {children}
