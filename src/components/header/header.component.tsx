@@ -5,12 +5,14 @@ import { ReactComponent as Logo } from "../../assets/img/logo.svg"
 
 import "./header.styles.scss"
 import { auth } from "../../firebase/firebase.utils"
+import { connect } from "react-redux"
+import { StoreState } from "../../store/root.reducer"
 
 interface IUser {
   currentUser: firebase.User | null
 }
 
-export const Header = ({ currentUser }: IUser) => (
+const Header = ({ currentUser }: IUser) => (
   <div className="header">
     <Link className="logo-container" to="/">
       <Logo className="logo"></Logo>
@@ -34,3 +36,9 @@ export const Header = ({ currentUser }: IUser) => (
     </div>
   </div>
 )
+
+const mapStateToProps = (state: StoreState) => ({
+  currentUser: state.user.currentUser,
+})
+
+export default connect(mapStateToProps)(Header)
