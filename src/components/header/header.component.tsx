@@ -41,9 +41,9 @@ const Header = ({ currentUser, visible }: PropsFromRedux) => (
   </div>
 )
 
-const mapStateToProps = (state: StoreState) => ({
-  currentUser: state.user.currentUser,
-  visible: state.cart.visible,
+const mapStateToProps = ({ user: { currentUser }, cart: { visible } }: StoreState) => ({
+  currentUser,
+  visible,
 })
 
 const connector = connect(mapStateToProps)
