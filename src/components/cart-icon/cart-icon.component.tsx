@@ -3,15 +3,23 @@ import "./cart-icon.styles.scss"
 import { ReactComponent as ShoppingIcon } from "../../assets/img/shopping-bag.svg"
 import { toggleCartVisibility } from "../../store/cart/cart.actions"
 import { connect, ConnectedProps } from "react-redux"
+import { Store } from "redux"
+import { StoreState } from "../../store/root.reducer"
 
-const CartIcon = ({ toggleCartVisibility }: PropsFromRedux) => (
+const CartIcon = ({ itemCount, toggleCartVisibility }: PropsFromRedux) => (
   <div className="cart-icon" onClick={toggleCartVisibility}>
     <ShoppingIcon className="shopping-icon" />
-    <span className="item-count">0</span>
+    <span className="item-count">{itemCount}</span>
   </div>
 )
 
-const connector = connect(null, { toggleCartVisibility })
+const mapStateToProps = ({ cart: { cartItems } }: StoreState) => {
+  return {
+    itemCount: cartItems.reduce((prev, next) => prev + next.quantity!, 0),
+  }
+}
+
+const connector = connect(mapStateToProps, { toggleCartVisibility })
 type PropsFromRedux = ConnectedProps<typeof connector>
 
 export default connector(CartIcon)
