@@ -1,8 +1,7 @@
-import { SetCartVisibilityAction } from "./cart.types"
+import { ToggleCartVisibilityAction } from "./cart.types"
 
-export const SET_HIDDEN = "SET_HIDDEN"
+export const TOGGLE_HIDDEN = "SET_HIDDEN"
 
-export const setCartVisibility = (visible: boolean): SetCartVisibilityAction => ({
-  type: SET_HIDDEN,
-  payload: visible,
+export const toggleCartVisibility = (): ToggleCartVisibilityAction => ({
+  type: TOGGLE_HIDDEN,
 })

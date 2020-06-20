@@ -1,16 +1,16 @@
-import { SET_HIDDEN } from "./cart.actions"
-import { SetCartVisibilityAction } from "./cart.types"
+import { TOGGLE_HIDDEN } from "./cart.actions"
+import { CartActionTypes } from "./cart.types"
 
 const INITIAL_STATE = {
   visible: false,
 }
 
-export const cartReducer = (state = INITIAL_STATE, action: SetCartVisibilityAction) => {
+export const cartReducer = (state = INITIAL_STATE, action: CartActionTypes) => {
   switch (action.type) {
-    case SET_HIDDEN:
+    case TOGGLE_HIDDEN:
       return {
         ...state,
-        visible: action.payload,
+        visible: !state.visible,
       }
     default:
       return state
