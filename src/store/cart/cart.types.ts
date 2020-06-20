@@ -1,13 +1,10 @@
+import { IShopItem } from "../../pages/shop/shop.component"
+
 export const TOGGLE_HIDDEN = "TOGGLE_HIDDEN"
 export const ADD_ITEM = "ADD_ITEM"
 
 export interface Cart {
   visible: boolean
-}
-
-export interface CartItem {
-  name: string
-  price: number
 }
 
 export interface ToggleCartVisibilityAction {
@@ -16,7 +13,7 @@ export interface ToggleCartVisibilityAction {
 
 export interface AddCartItemAction {
   type: typeof ADD_ITEM
-  payload: CartItem
+  payload: IShopItem
 }
 
 export type CartActionTypes = ToggleCartVisibilityAction | AddCartItemAction

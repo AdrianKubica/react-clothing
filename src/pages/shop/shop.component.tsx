@@ -19,6 +19,7 @@ export interface IShopItem {
   name: string
   imageUrl: string
   price: number
+  quantity?: number
 }
 
 export class ShopPage extends React.Component<{}, IState> {
