@@ -9,8 +9,8 @@ import { auth, createUserProfileDocument } from "./firebase/firebase.utils"
 import { Unsubscribe } from "firebase"
 import { connect, ConnectedProps } from "react-redux"
 import { setCurrentUser } from "./store/user/user.actions"
-import { User, SetCurrentUserAction } from "./store/user/user.types"
-import { Dispatch } from "redux"
+import { User } from "./store/user/user.types"
+import { Dispatch, Action } from "redux"
 
 class App extends React.Component<PropsFromRedux> {
   unsubscribeFromAuth!: Unsubscribe
@@ -53,7 +53,7 @@ const mapStateToProps = ({ user }: { user: User }) => ({
   currentUser: user.currentUser,
 })
 
-const mapDispatchToProps = (dispatch: Dispatch<SetCurrentUserAction>) => ({
+const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
   setCurrentUser: (user: User) => dispatch(setCurrentUser(user)),
 })
 

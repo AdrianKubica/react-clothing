@@ -5,14 +5,16 @@ import { ReactComponent as Logo } from "../../assets/img/logo.svg"
 
 import "./header.styles.scss"
 import { auth } from "../../firebase/firebase.utils"
-import { connect } from "react-redux"
+import { connect, ConnectedProps } from "react-redux"
 import { StoreState } from "../../store/root.reducer"
+import CartIcon from "../cart-icon/cart-icon.component"
+import { CartDropdown } from "../cart-dropdown/cart-dropdown.component"
 
 interface IUser {
   currentUser: firebase.User | null
 }
 
-const Header = ({ currentUser }: IUser) => (
+const Header = ({ currentUser, visible }: PropsFromRedux) => (
   <div className="header">
     <Link className="logo-container" to="/">
       <Logo className="logo"></Logo>
@@ -33,12 +35,18 @@ const Header = ({ currentUser }: IUser) => (
           SIGN IN
         </Link>
       )}
+      <CartIcon />
+      {visible && <CartDropdown />}
     </div>
   </div>
 )
 
 const mapStateToProps = (state: StoreState) => ({
   currentUser: state.user.currentUser,
+  visible: state.cart.visible,
 })
 
-export default connect(mapStateToProps)(Header)
+const connector = connect(mapStateToProps)
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+export default connector(Header)
