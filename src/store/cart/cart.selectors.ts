@@ -5,6 +5,8 @@ const selectCart = (state: StoreState) => state.cart
 
 export const selectCartItems = createSelector([selectCart], (cart) => cart.cartItems)
 
+export const selectCartVisibility = createSelector([selectCart], (cart) => cart.visible)
+
 export const selectCartItemsCount = createSelector([selectCartItems], (cartItems) =>
   cartItems.reduce((prev, next) => prev + next.quantity!, 0)
 )

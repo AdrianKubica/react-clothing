@@ -6,9 +6,13 @@ import { ReactComponent as Logo } from "../../assets/img/logo.svg"
 import "./header.styles.scss"
 import { auth } from "../../firebase/firebase.utils"
 import { connect, ConnectedProps } from "react-redux"
-import { StoreState } from "../../store/root.reducer"
 import CartIcon from "../cart-icon/cart-icon.component"
 import CartDropdown from "../cart-dropdown/cart-dropdown.component"
+import { selectCurrentUser } from "../../store/user/user.selector"
+import { selectCartVisibility } from "../../store/cart/cart.selectors"
+import { createStructuredSelector } from "reselect"
+import { StoreState } from "../../store/root.reducer"
+import { Cart } from "../../store/cart/cart.types"
 
 interface IUser {
   currentUser: firebase.User | null
@@ -41,9 +45,9 @@ const Header = ({ currentUser, visible }: PropsFromRedux) => (
   </div>
 )
 
-const mapStateToProps = ({ user: { currentUser }, cart: { visible } }: StoreState) => ({
-  currentUser,
-  visible,
+const mapStateToProps = createStructuredSelector<StoreState, IUser & Pick<Cart, "visible">>({
+  currentUser: selectCurrentUser,
+  visible: selectCartVisibility,
 })
 
 const connector = connect(mapStateToProps)

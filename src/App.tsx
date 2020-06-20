@@ -11,6 +11,8 @@ import { connect, ConnectedProps } from "react-redux"
 import { setCurrentUser } from "./store/user/user.actions"
 import { User } from "./store/user/user.types"
 import { Dispatch, Action } from "redux"
+import { StoreState } from "./store/root.reducer"
+import { selectCurrentUser } from "./store/user/user.selector"
 
 class App extends React.Component<PropsFromRedux> {
   unsubscribeFromAuth!: Unsubscribe
@@ -49,8 +51,8 @@ class App extends React.Component<PropsFromRedux> {
   }
 }
 
-const mapStateToProps = ({ user }: { user: User }) => ({
-  currentUser: user.currentUser,
+const mapStateToProps = (state: StoreState) => ({
+  currentUser: selectCurrentUser(state),
 })
 
 const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
