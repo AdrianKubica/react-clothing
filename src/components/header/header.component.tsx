@@ -8,7 +8,7 @@ import { auth } from "../../firebase/firebase.utils"
 import { connect, ConnectedProps } from "react-redux"
 import { StoreState } from "../../store/root.reducer"
 import CartIcon from "../cart-icon/cart-icon.component"
-import { CartDropdown } from "../cart-dropdown/cart-dropdown.component"
+import CartDropdown from "../cart-dropdown/cart-dropdown.component"
 
 interface IUser {
   currentUser: firebase.User | null

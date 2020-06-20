@@ -5,6 +5,7 @@ export const ADD_ITEM = "ADD_ITEM"
 
 export interface Cart {
   visible: boolean
+  cartItems: IShopItem[]
 }
 
 export interface ToggleCartVisibilityAction {
