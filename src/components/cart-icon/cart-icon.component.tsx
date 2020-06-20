@@ -1,23 +1,25 @@
 import React from "react"
 import "./cart-icon.styles.scss"
 import { ReactComponent as ShoppingIcon } from "../../assets/img/shopping-bag.svg"
-import { useSelector, shallowEqual, useDispatch } from "react-redux"
+import { toggleCartVisibility } from "../../store/cart/cart.actions"
+import { connect, ConnectedProps } from "react-redux"
 import { StoreState } from "../../store/root.reducer"
-import { TOGGLE_HIDDEN } from "../../store/cart/cart.types"
+import { selectCartItemsCount } from "../../store/cart/cart.selectors"
 
-const reduce = ({ cart: {cartItems} }: StoreState) => {
-  return cartItems.reduce((prev, next) => prev + next.quantity!, 0)
+const CartIcon = ({ itemCount, toggleCartVisibility }: PropsFromRedux) => (
+  <div className="cart-icon" onClick={toggleCartVisibility}>
+    <ShoppingIcon className="shopping-icon" />
+    <span className="item-count">{itemCount}</span>
+  </div>
+)
+
+const mapStateToProps = (state: StoreState) => {
+  return {
+    itemCount: selectCartItemsCount(state),
+  }
 }
 
-const CartIcon = () => {
-  const itemCount = useSelector(reduce, shallowEqual)
-  const dispatch = useDispatch()
-  return (
-    <div className="cart-icon" onClick={() => dispatch({ type: TOGGLE_HIDDEN })}>
-      <ShoppingIcon className="shopping-icon" />
-      <span className="item-count">{itemCount}</span>
-    </div>
-  )
-}
+const connector = connect(mapStateToProps, { toggleCartVisibility })
+type PropsFromRedux = ConnectedProps<typeof connector>
 
-export default CartIcon
+export default connector(CartIcon)
