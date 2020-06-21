@@ -1,8 +1,11 @@
 export interface Shop {
-  collections: ShopCollection[]
+  collections: ShopCollection
 }
 
 export interface ShopCollection {
+  [key: string]: ShopCollectionDetail
+}
+export interface ShopCollectionDetail {
   id: number
   title: string
   routeName: string

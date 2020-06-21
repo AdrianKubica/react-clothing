@@ -1,9 +1,9 @@
 import React from "react"
 import "./collection-preview.styles.scss"
 import CollectionItem from "../collection-item/collection-item.component"
-import { ShopCollection } from "../../store/shop/shop.types"
+import { ShopCollectionDetail } from "../../store/shop/shop.types"
 
-export const CollectionPreview = ({ id, title, items, routeName }: ShopCollection) => (
+export const CollectionPreview = ({ id, title, items, routeName }: ShopCollectionDetail) => (
   <div className="collection-preview">
     <h1 className="title">{title.toUpperCase()}</h1>
     <div className="preview">
