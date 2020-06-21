@@ -5,8 +5,11 @@ import { ConnectedProps, connect } from "react-redux"
 import { StoreState } from "../../store/root.reducer"
 import { CartItem } from "../cart-item/cart-item.component"
 import { selectCartItems } from "../../store/cart/cart.selectors"
+import { withRouter } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router';
 
-const CartDropdown = ({ cartItems }: PropsFromRedux) => (
+const CartDropdown = ({ cartItems, history, match }: PropsFromRedux & RouteComponentProps) => {
+  return (
   <div className="cart-dropdown">
     <div className="cart-items">
       {cartItems.length ? (
@@ -15,9 +18,9 @@ const CartDropdown = ({ cartItems }: PropsFromRedux) => (
         <span className="empty-message">Your cart is empty</span>
       )}
     </div>
-    <CustomButton>GO TO CHECKOUT</CustomButton>
+    <CustomButton onClick={() => history.push("/checkout")}>GO TO CHECKOUT</CustomButton>
   </div>
-)
+)}
 
 const mapStateToProps = (state: StoreState) => ({
   cartItems: selectCartItems(state),
@@ -26,4 +29,4 @@ const mapStateToProps = (state: StoreState) => ({
 const connector = connect(mapStateToProps)
 type PropsFromRedux = ConnectedProps<typeof connector>
 
-export default connector(CartDropdown)
+export default withRouter(connector(CartDropdown))
