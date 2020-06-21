@@ -1,5 +1,5 @@
 import { CartActionTypes, TOGGLE_HIDDEN, ADD_ITEM, REMOVE_ITEM, CLEAR_ITEM_FROM_CART } from "./cart.types"
-import { addItemToCart, clearItemFromCart, removeItemFromCart } from './cart.utils';
+import { addItemToCart, clearItemFromCart, removeItemFromCart } from "./cart.utils"
 
 const INITIAL_STATE = {
   visible: false,
