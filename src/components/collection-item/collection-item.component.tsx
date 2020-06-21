@@ -2,10 +2,10 @@ import React from "react"
 import "./collection-item.styles.scss"
 import { CustomButton } from "../custom-button/custom-button.component"
 import { connect, ConnectedProps } from "react-redux"
+import { ShopItem } from "../../store/shop/shop.types"
 import { addCartItem } from "../../store/cart/cart.actions"
-import { IShopItem } from "../../pages/shop/shop.component"
 
-const CollectionItem = ({ item, addCartItem }: { item: IShopItem } & PropsFromRedux) => {
+const CollectionItem = ({ item, addCartItem }: { item: ShopItem } & PropsFromRedux) => {
   const { name, price, imageUrl } = item
   return (
     <div className="collection-item">

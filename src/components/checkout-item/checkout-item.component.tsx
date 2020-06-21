@@ -1,11 +1,11 @@
 import React from "react"
 
 import "./checkout-item.styles.scss"
-import { IShopItem } from "../../pages/shop/shop.component"
 import { useDispatch } from "react-redux"
 import { clearCartItem, addCartItem, removeCartItem } from "../../store/cart/cart.actions"
+import { ShopItem } from "../../store/shop/shop.types"
 
-export const CheckoutItem = ({ cartItem }: { cartItem: IShopItem }) => {
+export const CheckoutItem = ({ cartItem }: { cartItem: ShopItem }) => {
   const { id, name, imageUrl, price, quantity } = cartItem
   const dispatch = useDispatch()
   return (

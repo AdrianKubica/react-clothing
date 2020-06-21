@@ -6,6 +6,10 @@ import { Cart } from "./cart/cart.types"
 
 import { persistReducer } from "redux-persist"
 import storage from "redux-persist/lib/storage"
+import { directoryReducer } from "./directory/directory.reducer"
+import { Directory } from "./directory/directory.types"
+import { shopReducer } from "./shop/shop.reducer"
+import { Shop } from "./shop/shop.types"
 
 const persistConfig = {
   key: "root",
@@ -16,11 +20,15 @@ const persistConfig = {
 export interface StoreState {
   user: User
   cart: Cart
+  directory: Directory
+  shop: Shop
 }
 
 const rootReducer = combineReducers({
   user: userReducer,
   cart: cartReducer,
+  directory: directoryReducer,
+  shop: shopReducer,
 })
 
 export default persistReducer(persistConfig, rootReducer)

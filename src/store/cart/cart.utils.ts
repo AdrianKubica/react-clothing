@@ -1,6 +1,5 @@
-import { IShopItem } from "../../pages/shop/shop.component"
-
-export const addItemToCart = (cartItems: IShopItem[], cartItemToAdd: IShopItem) => {
+import { ShopItem } from "../shop/shop.types"
+export const addItemToCart = (cartItems: ShopItem[], cartItemToAdd: ShopItem) => {
   const existingCartItem = cartItems.find((cartItem) => cartItem.id === cartItemToAdd.id)
 
   if (existingCartItem) {
@@ -11,7 +10,7 @@ export const addItemToCart = (cartItems: IShopItem[], cartItemToAdd: IShopItem) 
   return [...cartItems, { ...cartItemToAdd, quantity: 1 }]
 }
 
-export const removeItemFromCart = (cartItems: IShopItem[], cartToRemove: IShopItem) => {
+export const removeItemFromCart = (cartItems: ShopItem[], cartToRemove: ShopItem) => {
   const existingCartItem = cartItems.find((cartItem) => cartItem.id === cartToRemove.id)
 
   if (existingCartItem?.quantity === 1) {
@@ -23,5 +22,5 @@ export const removeItemFromCart = (cartItems: IShopItem[], cartToRemove: IShopIt
   )
 }
 
-export const clearItemFromCart = (cartItems: IShopItem[], id: number) =>
+export const clearItemFromCart = (cartItems: ShopItem[], id: number) =>
   cartItems.filter((cartItem) => cartItem.id !== id)
