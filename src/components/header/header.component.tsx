@@ -1,9 +1,7 @@
 import React from "react"
-import { Link } from "react-router-dom"
 
 import { ReactComponent as Logo } from "../../assets/img/logo.svg"
 
-import "./header.styles.scss"
 import { auth } from "../../firebase/firebase.utils"
 import { connect, ConnectedProps } from "react-redux"
 import CartIcon from "../cart-icon/cart-icon.component"
@@ -13,36 +11,31 @@ import { selectCartVisibility } from "../../store/cart/cart.selectors"
 import { createStructuredSelector } from "reselect"
 import { StoreState } from "../../store/root.reducer"
 import { Cart } from "../../store/cart/cart.types"
+import { HeaderContainer, LogoContainer, OptionsContainer, OptionLink } from "./header.styles"
 
 interface IUser {
   currentUser: firebase.User | null
 }
 
 const Header = ({ currentUser, visible }: PropsFromRedux) => (
-  <div className="header">
-    <Link className="logo-container" to="/">
+  <HeaderContainer>
+    <LogoContainer to="/">
       <Logo className="logo"></Logo>
-    </Link>
-    <div className="options">
-      <Link className="option" to="/shop">
-        SHOP
-      </Link>
-      <Link className="option" to="/contact">
-        CONTACT
-      </Link>
+    </LogoContainer>
+    <OptionsContainer>
+      <OptionLink to="/shop">SHOP</OptionLink>
+      <OptionLink to="/contact">CONTACT</OptionLink>
       {currentUser ? (
-        <div className="option" onClick={() => auth.signOut()}>
+        <OptionLink as="div" onClick={() => auth.signOut()}>
           SIGN OUT
-        </div>
+        </OptionLink>
       ) : (
-        <Link className="option" to="/auth">
-          SIGN IN
-        </Link>
+        <OptionLink to="/auth">SIGN IN</OptionLink>
       )}
       <CartIcon />
       {visible && <CartDropdown />}
-    </div>
-  </div>
+    </OptionsContainer>
+  </HeaderContainer>
 )
 
 const mapStateToProps = createStructuredSelector<StoreState, IUser & Pick<Cart, "visible">>({
