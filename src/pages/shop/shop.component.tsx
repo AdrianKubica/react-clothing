@@ -19,7 +19,7 @@ export const ShopPage = () => {
 
   useEffect(() => {
     const collectionRef = firestore.collection("collections")
-    unsubscribeFromSnapshot = collectionRef.onSnapshot(async (snapshot) => {
+    collectionRef.get().then(snapshot => {
       const collectionMap = convertCollectionsSnapshotToMap(snapshot)
       dispatch(shopUpdateCollectionAction(collectionMap))
       setLoading(false)
