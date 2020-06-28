@@ -1,7 +1,10 @@
-export const UPDATE_COLLECTIONS = "UPDATE_COLLECTIONS"
+export const FETCH_COLLECTIONS_START = "FETCH_COLLECTIONS_START"
+export const FETCH_COLLECTIONS_SUCCESS = "FETCH_COLLECTIONS_SUCCESS"
+export const FETCH_COLLECTIONS_FAILURE = "FETCH_COLLECTIONS_FAILURE"
 
 export interface Shop {
   collections: ShopCollection
+  isFetching: boolean
 }
 
 export interface ShopCollection {
@@ -22,9 +25,18 @@ export interface ShopItem {
   quantity?: number
 }
 
-export interface ShopUpdateCollection {
-  type: typeof UPDATE_COLLECTIONS
+export interface ShopFetchCollectionsStart {
+  type: typeof FETCH_COLLECTIONS_START
+}
+
+export interface ShopFetchCollectionsSuccess {
+  type: typeof FETCH_COLLECTIONS_SUCCESS
   payload: ShopCollection
 }
 
-export type ShopActionTypes = ShopUpdateCollection
+export interface ShopFetchCollectionsFailure {
+  type: typeof FETCH_COLLECTIONS_FAILURE
+  payload: string
+}
+
+export type ShopActionTypes = ShopFetchCollectionsStart | ShopFetchCollectionsSuccess | ShopFetchCollectionsFailure
