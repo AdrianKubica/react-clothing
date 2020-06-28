@@ -6,8 +6,8 @@ const selectShop = (state: StoreState) => state.shop
 export const selectShopCollections = createSelector([selectShop], (shop) => shop.collections)
 
 export const selectCollection = (collectionUrlParam: string) =>
-  createSelector([selectShopCollections], (collections) => collections[collectionUrlParam])
+  createSelector([selectShopCollections], (collections) => (collections ? collections[collectionUrlParam] : null))
 
 export const selectCollectionForOverview = createSelector([selectShopCollections], (collections) =>
-  Object.values(collections)
+  collections ? Object.values(collections) : []
 )

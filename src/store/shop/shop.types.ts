@@ -1,3 +1,5 @@
+export const UPDATE_COLLECTIONS = "UPDATE_COLLECTIONS"
+
 export interface Shop {
   collections: ShopCollection
 }
@@ -19,3 +21,10 @@ export interface ShopItem {
   price: number
   quantity?: number
 }
+
+export interface ShopUpdateCollection {
+  type: typeof UPDATE_COLLECTIONS
+  payload: ShopCollection
+}
+
+export type ShopActionTypes = ShopUpdateCollection
