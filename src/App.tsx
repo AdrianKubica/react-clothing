@@ -18,6 +18,8 @@ import { Dispatch, Action } from "redux"
 import { StoreState } from "./store/root.reducer"
 import { selectCurrentUser } from "./store/user/user.selector"
 import { CheckoutPage } from "./pages/checkout/checkout.component"
+// import { selectCollectionForOverview } from "./store/shop/shop.selectors"
+// import { ShopCollectionDetail } from "./store/shop/shop.types"
 
 class App extends React.Component<PropsFromRedux> {
   unsubscribeFromAuth!: Unsubscribe
@@ -36,6 +38,10 @@ class App extends React.Component<PropsFromRedux> {
         setCurrentUser(null)
       }
     })
+    // addCollectionAndDocuments(
+    //   "collections",
+    //   collectionsArray.map(({ title, items }: Pick<ShopCollectionDetail, "title" | "items">) => ({ title, items }))
+    // )
   }
 
   componentWillUnmount() {
@@ -59,6 +65,7 @@ class App extends React.Component<PropsFromRedux> {
 
 const mapStateToProps = (state: StoreState) => ({
   currentUser: selectCurrentUser(state),
+  // collectionsArray: selectCollectionForOverview(state),
 })
 
 const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
