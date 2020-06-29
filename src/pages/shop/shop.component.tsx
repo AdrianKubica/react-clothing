@@ -6,7 +6,7 @@ import { CollectionPage } from "../collection/collection.component"
 import { useSelector, useDispatch } from "react-redux"
 import { WithSpinner } from "../../components/with-spinner/with-spinner.component"
 import { selectIsCollectionFetching, selectIsCollectionLoaded } from "../../store/shop/shop.selectors"
-import { fetchCollectionsStartAsyncAction } from "../../store/shop/shop.actions"
+import { fetchCollectionsStartAction } from "../../store/shop/shop.actions"
 
 const CollectionOverviewWithSpinner = WithSpinner(CollectionOverview)
 const CollectionPageWithSpinner = WithSpinner(CollectionPage)
@@ -18,8 +18,8 @@ export const ShopPage = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchCollectionsStartAsyncAction())
-  }, [])
+    dispatch(fetchCollectionsStartAction())
+  }, [dispatch])
 
   return (
     <div className="shop-page">
